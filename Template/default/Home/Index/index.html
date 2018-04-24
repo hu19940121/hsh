@@ -68,6 +68,19 @@ var finalList=[]
 var musicList=[];
 var newList=[];
 var ids=''
+//获取歌词
+function getLRC(id){
+	$.ajax({
+		type:'GET',
+		url:'http://39.106.55.101:3000/lyric?id='+id
+		xhrFields: {
+		  withCredentials: true
+		},
+		success:function(res){
+			return res.lrc.lyric
+		}
+	})
+}
 $.ajax({
    type: "GET",
    url: "http://39.106.55.101:3000/playlist/detail?id=533074837",
@@ -110,15 +123,22 @@ $.ajax({
     				}
     			})
     		})
-    		
+
     		newList.forEach(function(item){
     			const musicObj={
+    				id:item.id,
     				src:item.url,
     				name:item.name,
     				img:item.picUrl
     			}
     			finalList.push(musicObj)
     		})
+
+    		finalList.forEach(function(item,index){
+    			const lrc=getLRC(item.id)
+    			finalList[index].lrc=lrc
+    		})
+
     		console.log(finalList)
     		finalList.unshift({
     					"basic":true,
@@ -128,7 +148,7 @@ $.ajax({
     		mplayer_song=[finalList]
     		init()
     	})
-    	
+
    }
 });
 
