@@ -72,7 +72,7 @@ function Loop_ajax(array){
 		Promise.all(array.map((item,index)=>{
 			return new Promise(resolve=>{
 				$.ajax({
-					url:'http://localhost:3000/lyric?id='+item.id,
+					url:'http://39.106.55.101:3000/lyric?id='+item.id,
 					type:'get',
 					success:function(res){
 						resolve(res)
