@@ -68,6 +68,33 @@ var finalList=[]
 var musicList=[];
 var newList=[];
 var ids=''
+function Loop_ajax(array){
+		Promise.all(array.map((item,index)=>{
+			return new Promise(resolve=>{
+				$.ajax({
+					url:'http://localhost:3000/lyric?id='+item.id,
+					type:'get',
+					success:function(res){
+						resolve(res)
+					}
+				})
+			})
+		})).then(resolve=>{
+			// console.log(resolve);
+			array.map((item,index)=>{
+				array[index].lrc=resolve[index].lrc?resolve[index].lrc.lyric : ''
+			})
+			array.unshift({
+				"basic":true,
+				"name":"猪小明歌单",
+				"img":"https://y.gtimg.cn/music/photo_new/T001R300x300M000000CK5xN3yZDJt.jpg"
+				    		
+			})
+			mplayer_song=[array]
+    	init()
+		})
+}
+
 
 $.ajax({
    type: "GET",
@@ -82,7 +109,7 @@ $.ajax({
     	list.forEach(function(item){
     		const tempObj={
     			id:item.id,
-    			name:item.album.name,
+    			name:item.name,
     			picUrl:item.album.picUrl
     		}
     		musicList.push(tempObj)
@@ -121,14 +148,14 @@ $.ajax({
     			}
     			finalList.push(musicObj)
     		})
-
-    		finalList.unshift({
-    					"basic":true,
-    					"name":"猪小明歌单",
-    					"img":"https://y.gtimg.cn/music/photo_new/T001R300x300M000000CK5xN3yZDJt.jpg"
-    		})
-    		mplayer_song=[finalList]
-    		init()
+    		console.log(finalList)
+    		// finalList.unshift({
+    		// 			"basic":true,
+    		// 			"name":"猪小明歌单",
+    		// 			"img":"https://y.gtimg.cn/music/photo_new/T001R300x300M000000CK5xN3yZDJt.jpg"
+    		// })
+    		Loop_ajax(finalList)
+    		
     	})
 
    }
