@@ -7,7 +7,7 @@ $(function(){
             'left': widthLeft['left']
         });
     }
-    
+
     // 鼠标移入导航条的hover状态
     $('.b-nav-parent li').hover(function() {
         getWidthLeft($(this),true);
@@ -63,7 +63,7 @@ $(function(){
  * 传递对象；获取left值和width
  * @param  {subject}  obj   html对象
  * @param  {Boolean} change  true获取left和宽；false改变left和宽；
- * @return {subject}         获取到的left和宽         
+ * @return {subject}         获取到的left和宽
  */
 function getWidthLeft(obj,change){
     var mobileLeft=obj.position().left;
@@ -82,6 +82,12 @@ function getWidthLeft(obj,change){
 function login(){
     $('#b-modal-login').modal('show');
     setCookie('this_url',window.location.href);
+}
+//注册
+function register(){
+    console.log('sss')
+    // $('#b-modal-register').modal('show');
+// setCookie('this_url',window.location.href);
 }
 
 // 退出

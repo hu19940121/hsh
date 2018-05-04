@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta http-equiv="Access-Control-Allow-Origin" content="*">
 
-<link rel="stylesheet" href="__HOME_CSS__/mplayer/mplayer.css"><include file="Public/public_head" title="" keywords="{$Think.config.WEB_KEYWORDS}" description="{$Think.config.WEB_DESCRIPTION}"/></head><body><include file="Public/public_nav"/><div class="b-h-70"></div><div id="b-content" class="container"><div class="row"><include file="Public/public_list"/><include file="Public/public_right"/></div><div class="row"><include file="Public/public_foot"/></div></div><include file="Public/public_login"/>
+<link rel="stylesheet" href="__HOME_CSS__/mplayer/mplayer.css"><include file="Public/public_head" title="" keywords="{$Think.config.WEB_KEYWORDS}" description="{$Think.config.WEB_DESCRIPTION}"/></head><body><include file="Public/public_nav"/><div class="b-h-70"></div><div id="b-content" class="container"><div class="row"><include file="Public/public_list"/><include file="Public/public_right"/></div><div class="row"><include file="Public/public_foot"/></div></div><include file="Public/public_login"/><include file="Public/public_register"/>
 
 	<div class="mp" style="z-index: 9999">
 		<div class="mp-box">
@@ -110,7 +110,7 @@ $.ajax({
     				}
     			})
     		})
-    		
+
     		newList.forEach(function(item){
     			const musicObj={
     				src:item.url,
@@ -128,7 +128,7 @@ $.ajax({
     		mplayer_song=[finalList]
     		init()
     	})
-    	
+
    }
 });
 

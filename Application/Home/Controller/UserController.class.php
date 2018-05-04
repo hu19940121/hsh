@@ -3,6 +3,11 @@ namespace Home\Controller;
 use Common\Controller\HomeBaseController;
 class UserController extends HomeBaseController {
 
+    //普通登陆
+    public function login(){
+        echo 'putongdenglku';
+
+    }
     // 第三方平台登录
     public function oauth_login(){
         $type=I('get.type');
