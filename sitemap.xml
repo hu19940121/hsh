@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset>
     <url>
+        <loc>http://39.106.55.101:8080/index.php/Home/Index/article/aid/20</loc>
+        <lastmod>2018-04-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>http://39.106.55.101:8080/index.php/Home/Index/article/aid/19</loc>
         <lastmod>2018-04-21</lastmod>
         <changefreq>weekly</changefreq>

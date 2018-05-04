@@ -68,6 +68,34 @@ var finalList=[]
 var musicList=[];
 var newList=[];
 var ids=''
+function Loop_ajax(array){
+		Promise.all(array.map((item,index)=>{
+			return new Promise(resolve=>{
+				$.ajax({
+					url:'http://39.106.55.101:3000/lyric?id='+item.id,
+					type:'get',
+					success:function(res){
+						resolve(res)
+					}
+				})
+			})
+		})).then(resolve=>{
+			// console.log(resolve);
+			array.map((item,index)=>{
+				array[index].lrc=resolve[index].lrc?resolve[index].lrc.lyric : ''
+			})
+			array.unshift({
+				"basic":true,
+				"name":"猪小明歌单",
+				"img":"https://y.gtimg.cn/music/photo_new/T001R300x300M000000CK5xN3yZDJt.jpg"
+				    		
+			})
+			mplayer_song=[array]
+    	init()
+		})
+}
+
+
 $.ajax({
    type: "GET",
    url: "http://39.106.55.101:3000/playlist/detail?id=533074837",
@@ -81,7 +109,7 @@ $.ajax({
     	list.forEach(function(item){
     		const tempObj={
     			id:item.id,
-    			name:item.album.name,
+    			name:item.name,
     			picUrl:item.album.picUrl
     		}
     		musicList.push(tempObj)
@@ -113,6 +141,7 @@ $.ajax({
 
     		newList.forEach(function(item){
     			const musicObj={
+    				id:item.id,
     				src:item.url,
     				name:item.name,
     				img:item.picUrl
@@ -120,13 +149,13 @@ $.ajax({
     			finalList.push(musicObj)
     		})
     		console.log(finalList)
-    		finalList.unshift({
-    					"basic":true,
-    					"name":"猪小明歌单",
-    					"img":"https://y.gtimg.cn/music/photo_new/T001R300x300M000000CK5xN3yZDJt.jpg"
-    		})
-    		mplayer_song=[finalList]
-    		init()
+    		// finalList.unshift({
+    		// 			"basic":true,
+    		// 			"name":"猪小明歌单",
+    		// 			"img":"https://y.gtimg.cn/music/photo_new/T001R300x300M000000CK5xN3yZDJt.jpg"
+    		// })
+    		Loop_ajax(finalList)
+    		
     	})
 
    }
@@ -147,7 +176,7 @@ function init(){
 		playList:0,
 		playSong:0,
 		// 当前歌词距离顶部的距离
-		lrcTopPos: 100,
+		lrcTopPos: 34,
 		// 列表模板，用${变量名}$插入模板变量
 		listFormat: '<tr><td>${name}$</td><td>${singer}$</td><td>${time}$</td></tr>',
 		// 音量滑块改变事件名称
