@@ -37,7 +37,7 @@
                 </li>
             </ul>
             <ul id="b-login-word" class="nav navbar-nav navbar-right">
-                <empty name="Think.session.user.head_img" >
+                <empty name="Think.session.user.username" >
                     <li class="b-nav-cname b-nav-login">
                         <div class="hidden-xs b-login-mobile"></div>
                         <a href="javascript:;" onclick="login()">登录</a>
@@ -48,8 +48,8 @@
                     </li>
                     <else />
                     <li class="b-user-info">
-                        <span><img class="b-head_img" src="{$Think.session.user.head_img}" alt="{$Think.session.user.nickname}" title="{$Think.session.user.nickname}"  /></span>
-                        <span class="b-nickname">{$Think.session.user.nickname}</span>
+                        <span><img class="b-head_img" src="{$Think.session.user.head_img}" alt="{$Think.session.user.username}" title="{$Think.session.user.username}"  /></span>
+                        <span class="b-nickname">{$Think.session.user.username}</span>
                         <span><a href="javascript:;" onclick="logout()">退出</a></span>
                     </li>
                 </empty>
