@@ -86,6 +86,7 @@ html;
      * @return array 评论数据
      */
     public function getDataByState($is_delete){
+
         $count=$this
             ->alias('c')
             ->join('__ARTICLE__ a ON a.aid=c.aid')
@@ -102,6 +103,7 @@ html;
             ->limit($page->firstRow.','.$page->listRows)
             ->order('date desc')
             ->select();
+
         $data=array(
             'data'=>$list,
             'page'=>$page->show()
@@ -117,13 +119,13 @@ html;
      */
     public function getChildData($aid){
         // 组合where条件
-        $status=C('COMMENT_REVIEW') ? array('c.status'=>1) : array();
+        $status=C('COMMENT_REVIEW') ? array('c.status'=>1) : array(); //status :是否审核
         $other=array(
             'c.aid'=>$aid,
             'c.pid'=>0,
             'c.is_delete'=>0
             );
-        $where=array_merge($status,$other);
+        $where=array_merge($status,$other); //array_merge 数组
         // 关联第三方用户表获取一级评论
         $data=$this
             ->alias('c')

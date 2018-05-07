@@ -6,7 +6,7 @@ class UserController extends HomeBaseController {
 
     //普通登陆
     public function login(){
-        $User = D("User");
+        $User = D("Oauth_user");
         //自动验证
         if (IS_POST){
             //获取前台传过来的值
@@ -14,13 +14,17 @@ class UserController extends HomeBaseController {
             if (!$User->create($data)){
                 $this->error($User->getError());
             }
-            $userInfo = $User->where(array('username'=>$data['username']))->find();
+            $userInfo = $User->where(array('uname'=>$data['uname']))->find();
             if ($userInfo){
                 if ($userInfo['password']==$data['password']){
                     $user_data['last_login_time']=time();
                     $user_data['last_login_ip']=get_client_ip(0,true);
-                    $User->where(array('username'=>$data['username']))->save($user_data);
+                    $User->where(array('uname'=>$data['uname']))->save($user_data);
+                    $userInfo['nickname']=$userInfo['uname'];
                     session('user',$userInfo);
+                    // var_dump(session('user'));
+                    // exit();
+                    session('login_type','normal');
                     $this->success('登录成功',U('Home/Index/index'));
                 }else{
                     $this->error('密码错误');
@@ -46,12 +50,13 @@ class UserController extends HomeBaseController {
     }
     //注册
     public function register(){
-        $User = D("User");
+        $User = D("Oauth_user");
         $data=I('post.');
         if (!$User->create($data)){
             $this->error($User->getError());
         }
         $data['create_time']=time();
+        $data['nickname']=$data['uname'];
         $User->create($data);
         $User->add();
         $this->success('恭喜您注册成功');
