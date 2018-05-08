@@ -15,6 +15,7 @@ class IndexController extends HomeBaseController{
         if($type == 'tencent'){
             $extend = array('openid' => $this->_get('openid'), 'openkey' => $this->_get('openkey'));
         }
+     
         $token = $sns->getAccessToken($code , $extend);
         //获取当前登录用户信息
         if(is_array($token)){

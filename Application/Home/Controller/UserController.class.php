@@ -68,6 +68,7 @@ class UserController extends HomeBaseController {
         $type=I('get.type');
         import("Org.ThinkSDK.ThinkOauth");
         $sdk=\ThinkOauth::getInstance($type);
+       
         redirect($sdk->getRequestCodeURL());
     }
 

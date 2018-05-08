@@ -8,7 +8,7 @@ return array(
     'ADMIN_EMAIL'               =>  '673822024@qq.com',          // 站长邮箱
 
 //*************************************优化推广****************************************
-    'WEB_NAME'                  =>  '胡士豪博客',             //网站名：
+    'WEB_NAME'                  =>  '白俊遥博客',             //网站名：
     'WEB_KEYWORDS'              =>  '猪小明,技术博客,个人博客,hsh',         //网站关键字
     'WEB_DESCRIPTION'           =>  'hsh的个人技术博客,hsh官方网站',      //网站描述
     'AUTHOR'                    =>  '胡士豪',               //默认作者
@@ -28,8 +28,8 @@ return array(
     'IMAGE_WATER_ALPHA'         =>  '80',    //图片水印 水印透明度：0-100
 
 //*************************************第三方登录****************************************
-    'QQ_APP_ID'                 =>  '101478160',            // QQ登录APP D
-    'QQ_APP_KEY'                =>  '2f3f786c0e3307b6c5f95fbad092bed9',           // QQ登录APP KEY
+    'QQ_APP_ID'                 =>  '101478246',            // QQ登录APP D
+    'QQ_APP_KEY'                =>  '4418b4ed3c7f4e9e894d47b760fcf1c7',           // QQ登录APP KEY
     'SINA_API_KEY'              =>  '',         // 新浪登录API KEY
     'SINA_SECRET'               =>  '',          // 新浪登录SECRET
     'DOUBAN_API_KEY'            =>  '',       // 豆瓣登录API KEY

@@ -111,6 +111,7 @@ class IndexController extends HomeBaseController {
         }
         // 获取评论数据
         $comment=D('Comment')->getChildData($aid);
+        // var_dump($comment);exit();
         $assign=array(
             'article'=>$article,
             'comment'=>$comment,
@@ -119,6 +120,7 @@ class IndexController extends HomeBaseController {
         if (!empty($_SESSION['user']['id'])) {
             $assign['user_email']=M('Oauth_user')->getFieldById($_SESSION['user']['id'],'email');
         }
+
         $this->assign($assign);
         $this->display();
     }
